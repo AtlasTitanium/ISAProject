@@ -40,4 +40,8 @@ public class PlayerMotor : MonoBehaviour {
 			cam.transform.Rotate(-cameraRotation);
 		}
 	}
+
+	public void Jump(float jumpSpeed){
+		rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+	}
 }

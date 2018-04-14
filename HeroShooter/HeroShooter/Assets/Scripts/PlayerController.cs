@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour{
     
     [SerializeField]
     private float speed = 5f;
+    [SerializeField]
+    private float Jumpspeed = 5f;
 
     [SerializeField]
     private float lookSensitivity = 3f;
@@ -18,6 +20,12 @@ public class PlayerController : MonoBehaviour{
     }
 
     void Update(){
+        if (Input.GetKey(KeyCode.Escape)){
+            Cursor.lockState = CursorLockMode.None;  
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        
         float xMov = Input.GetAxisRaw("Horizontal");
         float zMov = Input.GetAxisRaw("Vertical");
 
@@ -39,5 +47,10 @@ public class PlayerController : MonoBehaviour{
         Vector3 cameraRotation = new Vector3 (xRot, 0f, 0f) * lookSensitivity;
 
         motor.RotateCamera(cameraRotation);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            motor.Jump(Jumpspeed);
+        }
     }
 }

@@ -511,13 +511,14 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1720852556063680, guid: edd298add66f5284299c302bddcc7718,
+  m_PlayerPrefab: {fileID: 1113052860180924, guid: d0da01f3d0badf047b9c0c7dab433344,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1134371141667796, guid: e96f58720f3c66e448ee115cbbaed21b, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
