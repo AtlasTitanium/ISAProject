@@ -5,17 +5,22 @@ using UnityEngine.Networking;
 
 public class Shooting : NetworkBehaviour
 {
+    public Transform cirvle;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public Camera myCamera;
     public int Bulletspeed = 6;
     public float BulletLife = 2.0f;
 
     void Update()
-    {
+    {  
         if (!isLocalPlayer)
         {
             return;
         }
+
+        Aim();
+        Debug.Log(bulletSpawn.transform.rotation);
 
         if (Input.GetMouseButton(0))
         {
@@ -27,7 +32,7 @@ public class Shooting : NetworkBehaviour
     // … but it is run on the Server!
     [Command]
     void CmdFire()
-    {
+    {   
         // Create the Bullet from the Bullet Prefab
         var bullet = (GameObject)Instantiate(
             bulletPrefab,
@@ -43,9 +48,14 @@ public class Shooting : NetworkBehaviour
         // Destroy the bullet after 2 seconds
         Destroy(bullet, BulletLife);
     }
-
-    public override void OnStartLocalPlayer ()
-    {
-        GetComponent<MeshRenderer>().material.color = Color.blue;
+    
+    public void Aim(){
+        float x = Screen.width / 2;
+        float y = Screen.height / 2;
+        
+        Debug.Log("x and y cordinates, middle of the screen: " + x + "x and " + y + "y");
+        
+        bulletSpawn.transform.LookAt(cirvle);
+        
     }
 }
