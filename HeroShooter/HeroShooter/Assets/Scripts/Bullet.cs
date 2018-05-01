@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class Bullet : NetworkBehaviour {   
     void OnTriggerEnter(Collider collision){
-			if(!isLocalPlayer){
+			if(collision.transform != transform.parent){
 				if(collision.gameObject.tag == "Player"){
 					var hit = collision.gameObject;
 					var health = hit.GetComponent<Health>();
@@ -15,6 +15,10 @@ public class Bullet : NetworkBehaviour {
 
 					Destroy(gameObject);
 				}	
+				
+				if(collision.gameObject.tag == "Wall"){
+					Destroy(gameObject);
+				}
 			}
 		}
 }
