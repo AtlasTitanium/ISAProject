@@ -17,15 +17,14 @@ public class PlayerController : MonoBehaviour{
     private PlayerMotor motor;
 
     void Start(){
+        Cursor.lockState = CursorLockMode.Locked; 
         motor = GetComponent<PlayerMotor>();
     }
 
     void Update(){
 
         if (Input.GetKey(KeyCode.Escape)){
-            Cursor.lockState = CursorLockMode.None;  
-        } else {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.None; 
         }
         
         float xMov = Input.GetAxisRaw("Horizontal");
