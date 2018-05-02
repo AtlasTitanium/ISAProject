@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour{
+    public GameObject cirvle;
     
     [SerializeField]
     private float speed = 5f;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     void Update(){
+
         if (Input.GetKey(KeyCode.Escape)){
             Cursor.lockState = CursorLockMode.None;  
         } else {

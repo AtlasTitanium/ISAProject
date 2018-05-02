@@ -13,7 +13,6 @@ public class PlayerMotor : MonoBehaviour {
 	private bool isGrounded;
 	public float viewRange = 50f;
 	void Start () {
-		isGrounded = false;
 		rb = GetComponent<Rigidbody>();
 	}
 
@@ -22,17 +21,6 @@ public class PlayerMotor : MonoBehaviour {
 		Debug.Log(isGrounded);
 	}
 	*/
-	 void OnCollisionEnter(Collision hit)
-    {
-        if (hit.gameObject.CompareTag ("Ground")) {
-            isGrounded = true;
-        }
-    }
- 
-    void OnCollisionExit(Collision hit)
-    {
-            isGrounded = false;
-    }
 
 	public void Move(Vector3 velocities){
 		velocity = velocities;
@@ -71,8 +59,12 @@ public class PlayerMotor : MonoBehaviour {
 	}
 
 	public void Jump(float jumpSpeed){
-		if(isGrounded == true){
-			rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+		RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
+			if(hit.distance < 1.2){
+				rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+			}
 		}
 	}
 }

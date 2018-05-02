@@ -20,7 +20,6 @@ public class Shooting : NetworkBehaviour
         }
 
         Aim();
-        Debug.Log(bulletSpawn.transform.rotation);
 
         if (Input.GetMouseButton(0))
         {
@@ -53,9 +52,6 @@ public class Shooting : NetworkBehaviour
         float x = Screen.width / 2;
         float y = Screen.height / 2;
         
-        Debug.Log("x and y cordinates, middle of the screen: " + x + "x and " + y + "y");
-        
         bulletSpawn.transform.LookAt(cirvle);
-        
     }
 }
