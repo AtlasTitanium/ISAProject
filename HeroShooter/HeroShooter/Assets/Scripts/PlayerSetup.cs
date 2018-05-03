@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class PlayerSetup : NetworkBehaviour {
@@ -8,12 +9,12 @@ public class PlayerSetup : NetworkBehaviour {
 	Behaviour[] componentsToDisable;
 	Camera sceneCamera;
 	public GameObject MiddleScreen;
-	public GameObject Healthbar;
+	public Canvas Healthbar;
 	public override void OnStartLocalPlayer ()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
 		MiddleScreen.SetActive(true);
-		Healthbar.SetActive(false);
+		Healthbar.enabled = false;
     }
 	void Start(){
 		if(!isLocalPlayer){

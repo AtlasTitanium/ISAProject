@@ -161,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1449723097335066
 GameObject:
   m_ObjectHideFlags: 1
@@ -225,8 +225,6 @@ GameObject:
   - component: {fileID: 20612605569407030}
   - component: {fileID: 124459156321746228}
   - component: {fileID: 81750399569611486}
-  - component: {fileID: 114479131900827862}
-  - component: {fileID: 114880046565374738}
   - component: {fileID: 114871682930023972}
   m_Layer: 0
   m_Name: CharacterChoice
@@ -951,7 +949,7 @@ MonoBehaviour:
   - {fileID: 81834256302688154}
   - {fileID: 20655244315729244}
   MiddleScreen: {fileID: 1798597582368726}
-  Healthbar: {fileID: 1442979128046080}
+  Healthbar: {fileID: 223067915281440454}
 --- !u!114 &114382233942522056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -979,38 +977,6 @@ MonoBehaviour:
   destroyOnDeath: 0
   currentHealth: 100
   healthBar: {fileID: 224529611322852930}
---- !u!114 &114479131900827862
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721463610615220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 208
-    i1: 218
-    i2: 1
-    i3: 243
-    i4: 208
-    i5: 186
-    i6: 223
-    i7: 4
-    i8: 123
-    i9: 156
-    i10: 12
-    i11: 125
-    i12: 171
-    i13: 67
-    i14: 51
-    i15: 68
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &114512185855689490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1223,27 +1189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 20655244315729244}
   cirvle: {fileID: 1346757128608354}
---- !u!114 &114880046565374738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721463610615220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 0
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114911589460307482
 MonoBehaviour:
   m_ObjectHideFlags: 1

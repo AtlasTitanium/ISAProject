@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour{
+public class PlayerController : NetworkBehaviour{
     public GameObject cirvle;
     
     [SerializeField]
@@ -17,6 +18,10 @@ public class PlayerController : MonoBehaviour{
     private PlayerMotor motor;
 
     void Start(){
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         Cursor.lockState = CursorLockMode.Locked; 
         motor = GetComponent<PlayerMotor>();
     }

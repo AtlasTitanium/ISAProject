@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMotor : MonoBehaviour {
+public class PlayerMotor : NetworkBehaviour {
 	[SerializeField]
 	private Camera cam;
 	private Vector3 velocity = Vector3.zero;
@@ -13,6 +14,10 @@ public class PlayerMotor : MonoBehaviour {
 	private bool isGrounded;
 	public float viewRange = 50f;
 	void Start () {
+		if (!isLocalPlayer)
+        {
+            return;
+        }
 		rb = GetComponent<Rigidbody>();
 	}
 

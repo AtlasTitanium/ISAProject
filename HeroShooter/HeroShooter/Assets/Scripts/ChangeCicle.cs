@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ChangeCicle : MonoBehaviour {
+using UnityEngine.Networking;
+public class ChangeCicle : NetworkBehaviour {
 	public Camera cam;
 	public GameObject cirvle;
 	// Update is called once per frame
+	void Start(){
+		if (!isLocalPlayer)
+        {
+            return;
+        }
+	}
 	void Update () {
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class SpawnCharacter : MonoBehaviour {
 	public Health PlayerHealth;
@@ -17,9 +18,11 @@ public class SpawnCharacter : MonoBehaviour {
 	private bool alreadyClicked = true;
 	public GameObject Child;
 	public Camera MyOwnCamera;
+	private bool state = false;
 	// Use this for initialization
 	void Start () {
 		MyOwnCamera.enabled = false;
+		Cursor.visible = true;
 		Button btn = HeroChoices[0].GetComponent<Button>();
         Button btn2 = HeroChoices[1].GetComponent<Button>();
         //Calls the TaskOnClick method when you click the Button
@@ -30,6 +33,7 @@ public class SpawnCharacter : MonoBehaviour {
 	void OnHero1(){
 		HeroChange.Hero1();
 		Cursor.lockState = CursorLockMode.Locked; 
+		Cursor.visible = false;
 		PlayerFPS.SetActive(true);
 		PlayerHealthbar.SetActive(true);
 		PlayerHealth.enabled = true;
@@ -45,6 +49,7 @@ public class SpawnCharacter : MonoBehaviour {
 	void OnHero2(){
 		HeroChange.Hero2();
 		Cursor.lockState = CursorLockMode.Locked; 
+		Cursor.visible = false;
 		PlayerFPS.SetActive(true);
 		PlayerHealthbar.SetActive(true);
 		PlayerHealth.enabled = true;
@@ -61,6 +66,9 @@ public class SpawnCharacter : MonoBehaviour {
 	void Update(){
 		if(!alreadyClicked){
 			if(Input.GetKeyDown(KeyCode.Escape)){
+				HeroChange.heronumber = 0;
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 				PlayerFPS.SetActive(false);
 				PlayerHealthbar.SetActive(false);
 				PlayerHealth.enabled = false;
