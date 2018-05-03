@@ -10,9 +10,9 @@ public class SpawnCharacter : MonoBehaviour {
 	public PlayerSetup PlayerSetup;
 	public Shooting PlayerShooting;
 	public ChangeCicle PlayerCircle;
+	public HeroChange HeroChange;
 	public GameObject PlayerFPS;
 	public GameObject PlayerHealthbar;
-	public GameObject[] Heroes;
 	public Button[] HeroChoices;
 	private bool alreadyClicked = true;
 	public GameObject Child;
@@ -28,6 +28,7 @@ public class SpawnCharacter : MonoBehaviour {
 	}
 	
 	void OnHero1(){
+		HeroChange.Hero1();
 		Cursor.lockState = CursorLockMode.Locked; 
 		PlayerFPS.SetActive(true);
 		PlayerHealthbar.SetActive(true);
@@ -42,6 +43,7 @@ public class SpawnCharacter : MonoBehaviour {
 		MyOwnCamera.enabled = false;
 	}
 	void OnHero2(){
+		HeroChange.Hero2();
 		Cursor.lockState = CursorLockMode.Locked; 
 		PlayerFPS.SetActive(true);
 		PlayerHealthbar.SetActive(true);

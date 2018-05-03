@@ -10,10 +10,10 @@ public class ChangeCicle : MonoBehaviour {
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit)){
-            cirvle.transform.localPosition = new Vector3(0,0,hit.distance + 2);
+            cirvle.transform.localPosition = new Vector3(0,0,hit.distance + 1f);
         } else {
 			Debug.Log("nothing found");
-			cirvle.transform.localPosition = new Vector3(0,0,25);
+			cirvle.transform.localPosition = new Vector3(0,0,100);
 		}
 	}
 }

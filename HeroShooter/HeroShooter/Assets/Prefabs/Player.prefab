@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 114113384046307716}
   - component: {fileID: 114996262566682830}
   - component: {fileID: 114871998967534636}
+  - component: {fileID: 114512185855689490}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1010,6 +1011,21 @@ MonoBehaviour:
     i15: 68
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114512185855689490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113052860180924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b260e2edebfd7274fbbb7c983925dd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfBullets:
+  - {fileID: 1080693068918486, guid: 3818a07cb6ab4d94b83a4642bcd9cd8c, type: 2}
+  - {fileID: 1134371141667796, guid: e96f58720f3c66e448ee115cbbaed21b, type: 2}
+  theGunScript: {fileID: 114996715355611818}
 --- !u!114 &114539872541907842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1186,11 +1202,9 @@ MonoBehaviour:
   PlayerSetup: {fileID: 114300325730484160}
   PlayerShooting: {fileID: 114996715355611818}
   PlayerCircle: {fileID: 114871998967534636}
+  HeroChange: {fileID: 114512185855689490}
   PlayerFPS: {fileID: 1455614091477746}
   PlayerHealthbar: {fileID: 1442979128046080}
-  Heroes:
-  - {fileID: 1113052860180924}
-  - {fileID: 1113052860180924}
   HeroChoices:
   - {fileID: 114703511425619656}
   - {fileID: 114248036400213714}
