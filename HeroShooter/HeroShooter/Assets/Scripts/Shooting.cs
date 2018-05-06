@@ -11,6 +11,7 @@ public class Shooting : NetworkBehaviour
     public Camera myCamera;
     public int Bulletspeed = 6;
     public float BulletLife = 2.0f;
+    public bool ableToShoot = true;
 
     void Update()
     {  
@@ -21,9 +22,11 @@ public class Shooting : NetworkBehaviour
 
         Aim();
 
-        if (Input.GetMouseButton(0))
-        {
-            CmdFire();
+        if(ableToShoot){
+            if (Input.GetMouseButton(0))
+            {
+                CmdFire();
+            }
         }
     }
 

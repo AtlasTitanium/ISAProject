@@ -232,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1751708329299938
 GameObject:
   m_ObjectHideFlags: 1
@@ -950,6 +950,7 @@ MonoBehaviour:
   - {fileID: 20655244315729244}
   MiddleScreen: {fileID: 1798597582368726}
   Healthbar: {fileID: 223067915281440454}
+  Herochoose: {fileID: 1721463610615220}
 --- !u!114 &114382233942522056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -991,7 +992,9 @@ MonoBehaviour:
   typeOfBullets:
   - {fileID: 1080693068918486, guid: 3818a07cb6ab4d94b83a4642bcd9cd8c, type: 2}
   - {fileID: 1134371141667796, guid: e96f58720f3c66e448ee115cbbaed21b, type: 2}
+  - {fileID: 1976531047349052, guid: 2b5a174f6a0a33b4ea343f463813c91b, type: 2}
   theGunScript: {fileID: 114996715355611818}
+  heronumber: 0
 --- !u!114 &114539872541907842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1306,6 +1309,7 @@ MonoBehaviour:
   myCamera: {fileID: 20655244315729244}
   Bulletspeed: 80
   BulletLife: 0.5
+  ableToShoot: 1
 --- !u!124 &124265585323223504
 Behaviour:
   m_ObjectHideFlags: 1

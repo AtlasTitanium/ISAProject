@@ -13,6 +13,8 @@ public class HeroChange : NetworkBehaviour {
 	private bool KeyERestrict = false;
 	private bool KeyQRestrict = false;
 	private bool KeyMouseRestrict = false;
+	private bool waitForBurst = false;
+	private bool ShootRestrict = false;
 
 	void Start(){
 		if (!isLocalPlayer)
@@ -27,29 +29,43 @@ public class HeroChange : NetworkBehaviour {
 
 	void Update(){
 		if(heronumber == 1){
-			theGunScript.bulletPrefab = typeOfBullets[0];
-			theGunScript.Bulletspeed = 18;
-			theGunScript.BulletLife = 0.4f;
+			if(!ShootRestrict){
+				theGunScript.bulletPrefab = typeOfBullets[0];
+				theGunScript.Bulletspeed = 18;
+				theGunScript.BulletLife = 0.4f;
+			}
 			if(!KeyERestrict){
 				if(Input.GetKeyDown("e")){
 				Debug.Log("do the hero 1 special");
 				rb.AddForce(transform.forward * thrust/2);
 				rb.AddForce(transform.up * thrust);
-				StartCoroutine(waitforDrop(0.8f));
+				StartCoroutine(waitforDrop(0.4f));
 				KeyERestrict = true;
+				}
 			}
-			}
+
 			if(Input.GetMouseButtonDown(1)){
 				Debug.Log("do the hero 1 second click");
+				if(!waitForBurst){
+					ShootRestrict = true;
+					StartCoroutine(Quickshoot(0.05f));
+				}
 			}
+			if(waitForBurst) {
+				shootingScript.CmdFire();
+			}
+
 			if(Input.GetKeyDown("q")){
 				Debug.Log("do the hero 1 Ult");
+				StartCoroutine(Hero1Ult(0.5f));
 			}
 		}
 		if(heronumber == 2){
-			theGunScript.bulletPrefab = typeOfBullets[1];
-			theGunScript.Bulletspeed = 50;
-			theGunScript.BulletLife = 2f;
+			if(!ShootRestrict){
+				theGunScript.bulletPrefab = typeOfBullets[1];
+				theGunScript.Bulletspeed = 50;
+				theGunScript.BulletLife = 2f;
+			}
 			if(Input.GetKeyDown("e")){
 				Debug.Log("do the hero 2 special");
 			}
@@ -84,6 +100,42 @@ public class HeroChange : NetworkBehaviour {
 			shootingScript.CmdFire();
 			shootingScript.bulletSpawn.transform.Rotate(Vector3.up/4);
 		}
+		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y - 1f,shootingScript.bulletSpawn.transform.localPosition.z);
+		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,ycods,shootingScript.bulletSpawn.transform.position.z);
+		shootingScript.bulletSpawn.transform.Rotate(Vector3.forward);
+		KeyERestrict = false;
+    }
+
+	IEnumerator Quickshoot(float seconds)
+    {
+		yield return new WaitForSeconds(seconds*8);
+		shootingScript.ableToShoot = false;
+		theGunScript.bulletPrefab = typeOfBullets[2];
+		theGunScript.Bulletspeed = 50;
+		theGunScript.BulletLife = 2f;
+		yield return new WaitForSeconds(seconds*8);
+		waitForBurst = true;
+        yield return new WaitForSeconds(seconds);
+		ShootRestrict = false;
+		waitForBurst = false;
+		yield return new WaitForSeconds(seconds*8);
+		shootingScript.ableToShoot = true;
+    }
+
+	IEnumerator Hero1Ult(float seconds)
+    {
+		rb.AddForce(transform.up * thrust*4);
+        yield return new WaitForSeconds(seconds);
+		ycods = shootingScript.bulletSpawn.transform.position.y;
+		shootingScript.bulletSpawn.transform.eulerAngles = new Vector3(0,shootingScript.bulletSpawn.transform.eulerAngles.y,shootingScript.bulletSpawn.transform.eulerAngles.z);
+		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,0.5f,shootingScript.bulletSpawn.transform.position.z);
+		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y + 1f,shootingScript.bulletSpawn.transform.localPosition.z);
+		shootingScript.bulletSpawn.transform.Rotate(Vector3.down * 45f);
+		for(int i = 0; i < 200; i++){
+			shootingScript.CmdFire();
+			shootingScript.bulletSpawn.transform.Rotate(Vector3.up*2);
+		}
+		rb.AddForce(-transform.up * thrust*8);
 		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y - 1f,shootingScript.bulletSpawn.transform.localPosition.z);
 		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,ycods,shootingScript.bulletSpawn.transform.position.z);
 		shootingScript.bulletSpawn.transform.Rotate(Vector3.forward);

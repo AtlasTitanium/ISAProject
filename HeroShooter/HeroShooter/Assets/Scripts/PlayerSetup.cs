@@ -10,11 +10,13 @@ public class PlayerSetup : NetworkBehaviour {
 	Camera sceneCamera;
 	public GameObject MiddleScreen;
 	public Canvas Healthbar;
+	public GameObject Herochoose;
 	public override void OnStartLocalPlayer ()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
 		MiddleScreen.SetActive(true);
 		Healthbar.enabled = false;
+		Herochoose.SetActive(true);
     }
 	void Start(){
 		if(!isLocalPlayer){
