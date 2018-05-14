@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+public class DamageArea : NetworkBehaviour {
 
-public class Bullet : NetworkBehaviour {   
-	public int damage = 10;
+	int damage = 10;
 	void Start(){
 		if(!isLocalPlayer){
 			return;

@@ -96,9 +96,9 @@ public class HeroChange : NetworkBehaviour {
 		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,0.5f,shootingScript.bulletSpawn.transform.position.z);
 		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y + 1f,shootingScript.bulletSpawn.transform.localPosition.z);
 		shootingScript.bulletSpawn.transform.Rotate(Vector3.down * 22.5f);
-		for(int i = 0; i < 200; i++){
+		for(int i = 0; i < 20; i++){
 			shootingScript.CmdFire();
-			shootingScript.bulletSpawn.transform.Rotate(Vector3.up/4);
+			shootingScript.bulletSpawn.transform.Rotate(Vector3.up*2.5f);
 		}
 		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y - 1f,shootingScript.bulletSpawn.transform.localPosition.z);
 		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,ycods,shootingScript.bulletSpawn.transform.position.z);
@@ -131,9 +131,9 @@ public class HeroChange : NetworkBehaviour {
 		shootingScript.bulletSpawn.transform.position = new Vector3(shootingScript.bulletSpawn.transform.position.x,0.5f,shootingScript.bulletSpawn.transform.position.z);
 		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y + 1f,shootingScript.bulletSpawn.transform.localPosition.z);
 		shootingScript.bulletSpawn.transform.Rotate(Vector3.down * 45f);
-		for(int i = 0; i < 200; i++){
+		for(int i = 0; i < 100; i++){
 			shootingScript.CmdFire();
-			shootingScript.bulletSpawn.transform.Rotate(Vector3.up*2);
+			shootingScript.bulletSpawn.transform.Rotate(Vector3.up*4);
 		}
 		rb.AddForce(-transform.up * thrust*8);
 		shootingScript.bulletSpawn.transform.localPosition = new Vector3(shootingScript.bulletSpawn.transform.localPosition.x,shootingScript.bulletSpawn.transform.localPosition.y - 1f,shootingScript.bulletSpawn.transform.localPosition.z);
