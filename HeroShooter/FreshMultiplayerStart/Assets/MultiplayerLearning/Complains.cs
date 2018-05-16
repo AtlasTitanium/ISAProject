@@ -8,6 +8,7 @@ public class Complains : NetworkBehaviour {
 	private ServerCollective ServerSystem;
 	public Text Textprefab;
 	private InputField inputField;
+	private InputField NameinputField;
 	private Text ComplaintsText;
 	private Canvas Canvas;
 	private Color color = Color.blue;
@@ -17,6 +18,7 @@ public class Complains : NetworkBehaviour {
 	public GameObject chatPanel, textObject;
 	private bool InputInput = false;
 	public int PlayerID;
+	private string name;
 
 	//public InputField chatBox;
 
@@ -31,6 +33,7 @@ public class Complains : NetworkBehaviour {
 		chatPanel = GameObject.FindGameObjectWithTag("TextField");
 		chatPanel = GameObject.FindGameObjectWithTag("TextField");
 		inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>();
+		NameinputField = GameObject.FindGameObjectWithTag("NameInputField").GetComponent<InputField>();
 		Canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
 		//ComplaintsText = GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>();
 	}
@@ -43,12 +46,25 @@ public class Complains : NetworkBehaviour {
 			color = Color.red;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Return)){
-			//ComplaintsText.text = inputField.text;
-			if(inputField.text != ""){Cmd_UpdateHost(inputField.text, color);	Debug.Log("Post");}
-			inputField.text = "";
-			inputField.DeactivateInputField();
-			Debug.Log("DeactivateInputField");
+		if(inputField.isFocused == true){
+			if(Input.GetKeyDown(KeyCode.Return)){
+				//ComplaintsText.text = inputField.text;
+				if(inputField.text != ""){Cmd_UpdateHost(inputField.text, color);	Debug.Log("Post");}
+				inputField.text = "";
+				inputField.DeactivateInputField();
+				Debug.Log("DeactivateInputField");
+			}
+		}
+
+		if(NameinputField.isFocused == true){
+			if(Input.GetKeyDown(KeyCode.Return)){
+				name = NameinputField.text;
+				//ComplaintsText.text = inputField.text;
+				if(NameinputField.text != ""){Cmd_UpdateName();	Debug.Log("Post");}
+				NameinputField.text = "";
+				NameinputField.DeactivateInputField();
+				Debug.Log("DeactivateInputField");
+			}
 		}
 
 		if(Input.GetKeyDown("t")){
@@ -80,7 +96,7 @@ public class Complains : NetworkBehaviour {
 
 		newMessage.textObject = newText.GetComponent<Text>();
 
-		newMessage.textObject.text = newMessage.text;
+		newMessage.textObject.text = name + ": " + newMessage.text;
 		
 		newMessage.textObject.color = color;		
 
@@ -97,6 +113,16 @@ public class Complains : NetworkBehaviour {
 		ComplaintsText.color = color;
 		ComplaintsText.text = text;
 		*/
+	}
+
+	[Command]
+	void Cmd_UpdateName(){
+		Rpc_SendName(name);
+	}
+
+	[ClientRpc]
+	void Rpc_SendName(string name){
+		transform.name = name;
 	}
 }
 

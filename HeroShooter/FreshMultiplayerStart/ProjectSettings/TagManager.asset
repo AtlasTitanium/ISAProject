@@ -9,6 +9,7 @@ TagManager:
   - TextField
   - Canvas
   - ServerSystem
+  - NameInputField
   layers:
   - Default
   - TransparentFX
